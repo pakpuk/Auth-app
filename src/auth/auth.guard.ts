@@ -1,4 +1,4 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -12,6 +12,6 @@ export class AuthGuard implements CanActivate {
     if (authHeader == 'admin'){
       return true;
     }
-    return false;
+    throw new UnauthorizedException('Access denied');
   }
 }
